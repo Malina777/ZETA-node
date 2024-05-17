@@ -39,17 +39,17 @@ func TestERC20Withdraw(r *runner.E2ERunner, args []string) {
 	tx = r.WithdrawERC20(withdrawalAmount)
 
 	// verify the withdraw value
-	cctx := utils.WaitCctxMinedByInTxHash(r.Ctx, tx.Hash().Hex(), r.CctxClient, r.Logger, r.CctxTimeout)
+	cctx := utils.WaitCctxMinedByInboundHash(r.Ctx, tx.Hash().Hex(), r.CctxClient, r.Logger, r.CctxTimeout)
 	verifyTransferAmountFromCCTX(r, cctx, withdrawalAmount.Int64())
 }
 
 // verifyTransferAmountFromCCTX verifies the transfer amount from the CCTX on EVM
 func verifyTransferAmountFromCCTX(r *runner.E2ERunner, cctx *crosschaintypes.CrossChainTx, amount int64) {
-	r.Logger.Info("outTx hash %s", cctx.GetCurrentOutTxParam().OutboundTxHash)
+	r.Logger.Info("outTx hash %s", cctx.GetCurrentOutboundParam().Hash)
 
 	receipt, err := r.EVMClient.TransactionReceipt(
 		r.Ctx,
-		ethcommon.HexToHash(cctx.GetCurrentOutTxParam().OutboundTxHash),
+		ethcommon.HexToHash(cctx.GetCurrentOutboundParam().Hash),
 	)
 	if err != nil {
 		panic(err)
