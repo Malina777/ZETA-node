@@ -37,7 +37,7 @@ to build.
 This command will install the `zetacored` and `zetaclientd` binaries in your
 `$GOPATH/bin` directory.
 
-Verify that the version of the binaries match the release tag.  
+Verify that the version of the binaries match the release  tag.  
 ```
 zetacored version
 zetaclientd version
