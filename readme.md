@@ -28,7 +28,7 @@ EVM-compatibility.
 
 ## Building the `zetacored`/`zetaclientd` binaries
 
-Clone this repository, checkout the latest release tag, and type the following command to build the binaries:
+Clone this repository, checkout the latest release tag,  and type the following command to build the binaries:
 ```
 make install
 ```
